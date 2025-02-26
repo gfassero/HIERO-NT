@@ -3,11 +3,6 @@
     border-bottom: solid;
 }
 
-.headfoot a.split,
-#footer {
-    display: none;
-}
-
 #table-of-sections {
     order: -1;
 
@@ -28,4 +23,8 @@
     width: 100%;
     padding: 0.4em 0;
     margin-right: 0.5em;
+}
+
+#header a.split {
+    float: right;
 }
