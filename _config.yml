@@ -1,0 +1,5 @@
+name: HIERO-NT (New Testament)
+theme: jekyll-theme-minimal
+
+kramdown:
+  toc_levels: 2..2
