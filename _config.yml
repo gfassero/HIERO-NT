@@ -1,5 +1,10 @@
-name: HIERO-NT (New Testament)
+title: HIERO-NT
+name: New Testament
+description: New Testament Greek idiom in English
 theme: jekyll-theme-minimal
+show_downloads: true
+theme: jekyll-theme-minimal
+
 
 kramdown:
   toc_levels: 2..2
