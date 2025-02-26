@@ -1,0 +1,12 @@
+﻿.edit, p.subtitle {
+    color: gray;
+}
+
+.m {
+    border-bottom: 0.75pt solid var(--textgray);
+    border-radius: 3.75pt;
+}
+.f {
+    border-bottom: 1.25pt dashed var(--textgray);
+    border-radius: 3.75pt;
+}
