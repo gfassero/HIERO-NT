@@ -1,47 +1,118 @@
-﻿.book {
+﻿.title, .book, .psalm, .anchor-book {
     font-weight: bold;
 }
 
 #translation {
+    p {
+        position: relative; /* Enables positioning for the ::before pseudo-element */
+        margin: 0;
+        padding-left: 1.8em; /* Aligns the text flush */
+        text-indent: 0; /* Keeps all lines flush with each other */
+        hyphenate-character: "\2013";
+        word-wrap: anywhere;
+    }
 
-p {
-    position: relative; /* Enables positioning for the ::before pseudo-element */
-    margin: 0;
-    padding-left: 1.8em; /* Aligns the text flush */
-    text-indent: 0; /* Keeps all lines flush with each other */
-}
+    /* HEADINGS */
+
+    p.book:not(:first-of-type) {
+        break-before: page;
+    }
+    p.book, p.subtitle {
+        padding-left: 5.4em; /* 1.8 + 1.2 * 3 */
+    }
+    p.book, p.psalm {
+        margin-top: 1em;
+    }
+    p.subtitle {
+        margin-bottom: 1em;
+    }
+
+    /* LINE INDENTATION */
+
+    p.in1 {
+        padding-left: 3em; /* 1.8 + 1.2 */
+    }
+    p.in2 {
+        padding-left: 4.2em; /* 1.8 + 1.2 * 2 */
+    }
+
+    /* Aramaic lines in Hebrew verses */
+    p.in1::before {
+        width: 5em; /* padding-left divided by font-size */
+    }
+    p.in2::before {
+        width: 7em; /* padding-left divided by font-size */
+    }
+
 
     /* VERSE and CHAPTER NUMBERING */
 
-p::before,
-span.inline {
-    width: 2.33em; /* Reserves space for the number */
-    font-size: 60%;
-}
-p.chapter::before,
-span.inline.chapter {
-    font-size: 166.67%;
-    font-weight: bold;
+    p::before,
+    span.inline {
+        width: 2.33em; /* Reserves space for the number */
+        font-size: 60%;
+    }
+    p.chapter::before,
+    span.inline.chapter {
+        font-size: 166.67%;
+        font-weight: bold;
+    }
+
+    p::before {
+        content: attr(data-number); /* Displays the paragraph number */
+        position: absolute; /* Positions the number */
+        left: 0em; /* Aligns the number to the left margin */
+        text-align: right; /* Aligns the number to the right within its box */
+    }
+    p.chapter::before {
+        width: 1.5em; /* Reserves space for the number */
+        left: -0.5em;
+    }
+
+    span.inline {
+        vertical-align: bottom;
+    }
 }
 
-p::before {
-    content: attr(data-number); /* Displays the paragraph number */
-    position: absolute; /* Positions the number */
-    left: 0em; /* Aligns the number to the left margin */
-    text-align: right; /* Aligns the number to the right within its box */
+.popup {
+    position: absolute;
+    background: white;
+
+    padding: 10px;
+    margin-top: 10px;
+    border: var(--solidborder);
+    border-radius: var(--cornerradius);
+
+    display: block;
+    z-index: 100;
+    box-shadow: 2px 2px 10px var(--litebg);
 }
-p.chapter::before {
-    width: 1.5em; /* Reserves space for the number */
-    left: -0.5em;
+.popup a {
+    display: block;
 }
 
-span.inline {
-    vertical-align: bottom;
+
+.panel, .popup {
+    a:link, a:visited {color: var(--boldmain);}
+    a:hover {  color: var(--nearblack);}
+    a:active { color: var(--litebg);}
 }
 
-}
 
-.newtestament #translation p {
+
+
+
+    /* PARASHAH BREAKS */
+
+html #translation p.section {
+    padding-left: 5.4em; /* 1.8 + 1.2 * 3 */
+}
+html #translation p.paragraph {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+html .newtestament #translation p,
+html #translation p.section {
     margin-top: 1em;
     margin-bottom: 1em;
 }

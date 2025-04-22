@@ -1,0 +1,120 @@
+:root {
+  --hue-main: 230;
+  --hue-hili:  50;
+
+  --boldmain:    hsl(var(--hue-main)  95% 60%); /* DARK BLUE */
+  --boldhilite:  hsl(var(--hue-hili)  95% 60%); /* ORANGE */
+
+  --litebg:      hsl(var(--hue-main)  67% 78%); /* LIGHT BLUE */
+  --navhover:    hsl(var(--hue-hili)  67% 78%); /* LIGHT ORANGE */
+
+  --darkborder:  hsl(var(--hue-main)  33% 67%); /* STEEL BLUE */
+
+  --nearblack:   hsl(var(--hue-main)   0% 22%); /* DARK GRAY */
+  --textgray:    hsl(var(--hue-main)   0% 78%); /* MID-GRAY */
+  --whitetext:   WHITE;
+
+  --readwidth: 60em;
+
+  --cornerradius: 3.75pt;
+  --solidborder: 1px solid var(--darkborder);
+  --dottedborder: 1px dotted var(--darkborder);
+}
+
+*, #table-of-sections a {
+    scroll-margin-top: 0.65em;
+    scroll-behavior: smooth;
+    transition: color 0.15s, background-color 0.15s;
+    box-sizing: border-box;
+}
+.panel a:not(#table-of-sections a) {transition: none;}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    line-height: 1.3em; /* line spacing */
+    padding: 0;
+    margin: 0;
+    font-family: serif;
+}
+
+p {
+    display: block;
+}
+
+.content-container {
+    display: flex;
+    flex: 1; /* This makes sure the content takes up the remaining space */
+    overflow: hidden; /* Prevent content from overflowing the container */
+}
+.panel {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow-y: auto; /* Allow scrolling */
+    box-sizing: border-box;
+}
+#translation {
+    padding: 1em;
+
+    /* These rules exist to shrink-wrap the paragraphs to the size of their text,
+       instead of letting them take up the entire width of the viewport. */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    word-wrap: break-word;
+
+    max-width: var(--readwidth);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#translation, #table-of-sections {
+    max-width: 60em;
+}
+
+.match  {
+    background-color: var(--boldhilite);
+    border-radius: var(--cornerradius);
+}
+
+@media print {
+    body {
+        font-size: 12pt;
+    }
+    #printable {
+        column-count: 2;
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-fill: balance; /* Creation of columns is symmetrical. */
+        column-gap: 2em; /* Distance between columns */
+        column-rule: 1px solid black; /* Lines between columns */
+        column-width: auto; /* Width of all columns */
+    }
+    .panel {
+        display: flow;
+        overflow-y: visible; /* Do not crop for scrolling */
+    }
+    #translation {
+        padding: 0;
+    }
+
+
+
+    #header, #table-of-sections {
+        display: none !important;
+    }
+    #footer {
+        border: none;
+        background: none;
+        margin-top: 2em;
+    }
+    #footer > a:link, #footer > a:visited {
+        color: black;
+        text-decoration: none;
+    }
+    #footer > .title::after {
+        content: " / ";
+    }
+}

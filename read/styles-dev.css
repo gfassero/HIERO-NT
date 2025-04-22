@@ -1,37 +1,24 @@
-﻿@import "styles-paragraph.css";
-@import "styles-span.css";
-@import "styles-headfoot.css" screen;
+﻿:root {
+  --boldmain:    BLACK !important; /* DARK BLUE */
+  --boldhilite:  #C7C7C7 !important; /* ORANGE */
 
-:root {
-  --textgray:    hsl(0   0% 78%); /* MID-GRAY */
-}
+  --litebg:      BLACK !important; /* LIGHT BLUE */
+  --navhover:    #C7C7C7 !important; /* LIGHT ORANGE */
 
-*, #table-of-sections a {
-    scroll-margin-top: 0.65em;
-}
+  --darkborder:  BLACK !important; /* STEEL BLUE */
 
-body {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    line-height: 1.3em; /* line spacing */
-    padding: 0;
-    margin: 0;
-    font-family: serif;
+  --nearblack:   BLACK !important; /* DARK GRAY */
+  --textgray:    #C7C7C7 !important; /* MID-GRAY */
+  --whitetext:   WHITE !important;
+
+  --readwidth: 60em;
+
+  --cornerradius: 0;
+  --solidborder: 1px solid var(--darkborder);
+  --dottedborder: 1px solid var(--darkborder);
 }
 
-.content-container {
-    display: flex;
-    flex: 1; /* This makes sure the content takes up the remaining space */
-    overflow: hidden; /* Prevent content from overflowing the container */
-}
-.panel {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    overflow-y: auto; /* Allow scrolling */
-    box-sizing: border-box;
-}
-#translation {
-    padding: 1em;
+* {
+    transition: initial !important;
+    scroll-behavior: initial !important;
 }

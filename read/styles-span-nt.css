@@ -1,0 +1,28 @@
+﻿.edit, p.subtitle {
+    color: gray;
+}
+
+.m {
+    border-bottom-color: #9090ff !important;
+    border-radius: 0%;
+}
+.f {
+    border-bottom-color: #ff6060 !important;
+    border-radius: 50%;
+}
+.c {
+    border-bottom-color: #cccccc !important;
+    border-radius: 100pt;
+}
+
+.m, .f, .c {
+    border-bottom: 1px solid;
+}
+.i {
+    border-bottom: 2px dashed;
+    border-bottom-color: #cccccc;
+}
+.p {
+    border-bottom: 3px double;
+    border-bottom-color: #cccccc;
+}
