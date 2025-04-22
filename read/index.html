@@ -4,84 +4,253 @@
 <html lang="en">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HIERO - Hebrew Idiom in English Roots</title>
-<link rel="stylesheet" href="styles.css" />
+<title>HIERO-NT - Greek Idiom in English Roots</title>
+<link rel="stylesheet" href="styles.css?v=3" />
 <style>
-
-/* Create two equal columns that float next to each other */
-.column {
-    float: left;
-    width: 50%;
-}
-
-.column p:last-child {
-    padding-bottom: 1em;
-}
-p {
-    line-height: 1.3em;
-}
-p.in1 {
-    margin-top: 0.4em !important;
-}
-p.title {
-    margin-top: 1.2em !important;
-}
-
-.panel {
-    flex-direction: row;
-}
-
-@media screen and (max-width: 30em) {
-    #translation {
-        padding: 0;
+    a.sec0, a.sec1, a.sec2 {
+        font-weight: bold;
     }
-}
+    a.sec0:hover, a.sec1:hover, a.sec2:hover {
+        background-color: initial;
+    }
+    a.sec1 {
+        border: var(--dottedborder);
+        border-left-width: 0;
+        border-right-width: 0;
+        border-radius: 0;
+    }
+    #table-of-sections a {
+        --horizmargin: 0.5em;
+        float: initial;
+        display: block;
+        padding: 0.4em var(--horizmargin);
+        margin: 0 var(--horizmargin);
+        width: calc(100% - 2 * var(--horizmargin));
+    }
+
+    #table-of-sections {
+        display: grid;
+        column-gap: initial;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hh {grid-area: hh;}
+    .h0 {grid-area: h0;}
+    .h1 {grid-area: h1;}
+    .h2 {grid-area: h2;}
+    .h3 {grid-area: h3;}
+    .h4 {grid-area: h4;}
+    .ch {grid-area: ch;}
+    .c0 {grid-area: c0;}
+    .c1 {grid-area: c1;}
+    .c2 {grid-area: c2;}
+    .c3 {grid-area: c3;}
+    
+    @media (max-width: 25em) {                         /* ONE COLUMN */
+        #table-of-sections {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto;
+        }
+        .item {grid-area: initial;}
+        .column {display: contents;}
+    .hh {order: 1;}
+    .h0 {order: 2;}
+    .h1 {order: 3;}
+    .h2 {order: 4;}
+    .h3 {order: 5;}
+    .h4 {order: 6;}
+    .ch {order: 7;}
+    .c0 {order: 8;}
+    .c1 {order: 9;}
+    .c2 {order: 10;}
+    .c3 {order: 11;}
+
+        .hh, .ch {
+            border-top: var(--solidborder);
+        }
+    }
+    @media (min-width: 25em) and (max-width: 42em) {  /* TWO COLUMNS */
+        #table-of-sections {
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-areas:
+                "hh hh"
+                ".  . "
+                "ch ch"
+                ".  . ";
+        }
+        .ch {
+            border-top: var(--solidborder);
+        }
+        .cdot {
+            border-left: var(--dottedborder);
+        }
+    }
+    @media (min-width: 42em) and (max-width: 61em) { /* FOUR COLUMNS */
+        #table-of-sections {
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-areas:
+                "hh hh ch ch"
+                ".  .  .  . ";
+        }
+        .csolid {
+            border-left: var(--solidborder);
+        }
+        .cdot {
+            border-left: var(--dottedborder);
+        }
+    }
+    @media (min-width: 61em) { /* SIX COLUMNS */
+        #table-of-sections {
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: auto auto auto auto 1fr;
+            grid-template-areas:
+                "hh hh hh ch ch ch"
+                "h0 h2 h3 c0 c1 c3"
+                "h1 h2 h3 c0 c1 c3"
+                "h1 h2 h3 c2 c1 c3"
+                "h1 h2 h4 c2 c1 c3";
+        }
+        .column {display: contents;}
+        .ch, .c0, .c2 {
+            border-left: var(--solidborder);
+        }
+        .h2, .h3, .h4, .c1, .c3 {
+            border-left: var(--dottedborder);
+        }
+    }
 </style>
 </head>
 <body>
 <div id="header" class="headfoot">
-<a href="http://gfassero.github.io/HIERO/" class="split">About</a><a href="key.html">Key</a>
+<a href="http://gfassero.github.io/HIERO-NT/" class="split">About</a><a href="key.html">Key</a>
 </div>
 
-<div class="content-container">
-<div class="panel" id="translation">
-    <div class="column">
-        <p class="title in1">New Testament</p>
-        <p class="title">Gospels</p>
-        <p><a href="01 Mat.html">Matthew</a></p>
-        <p><a href="02 Mrk.html">Mark</a></p>
-        <p><a href="03 Luk.html">Luke</a></p>
-        <p><a href="04 Jhn.html">John</a></p>
-        <p class="title">Sequel</p>
-        <p><a href="05 Act.html">Acts of the Apostles</a></p>
-        <p class="title">Letters of Saint Paul</p>
-        <p><a href="06 Rom.html">Romans</a></p>
-        <p><a href="07 1Co.html">1 Corinthians</a></p>
-        <p><a href="08 2Co.html">2 Corinthians</a></p>
-        <p><a href="09 Gal.html">Galatians</a></p>
-        <p><a href="10 Eph.html">Ephesians</a></p>
-        <p><a href="11 Php.html">Philippians</a></p>
-        <p><a href="12 Col.html">Colossians</a></p>
-        <p><a href="13 1Th.html">1 Thessalonians</a></p>
-        <p><a href="14 2Th.html">2 Thessalonians</a></p>
-        <p><a href="15 1Ti.html">1 Timothy</a></p>
-        <p><a href="16 2Ti.html">2 Timothy</a></p>
-        <p><a href="17 Tit.html">Titus</a></p>
-        <p><a href="18 Phm.html">Philemon</a></p>
-        <p class="title">Catholic Letters</p>
-        <p><a href="19 Heb.html">Hebrews</a></p>
-        <p><a href="20 Jas.html">James</a></p>
-        <p><a href="21 1Pe.html">1 Peter</a></p>
-        <p><a href="22 2Pe.html">2 Peter</a></p>
-        <p><a href="23 1Jn.html">1 John</a></p>
-        <p><a href="24 2Jn.html">2 John</a></p>
-        <p><a href="25 3Jn.html">3 John</a></p>
-        <p><a href="26 Jud.html">Jude</a></p>
-        <p class="title">Apocalypse</p>
-        <p><a href="27 Rev.html">Revelation</a></p>
+<div id="printable" class="panel">
+<div id="table-of-sections" class="headfoot">
+
+<div class="item hh">
+    <a class="sec0">New Testament</a>
+</div>
+<div class="column">
+    <div class="item h0">
+        <a class="sec1">Gospels</a>
+        <a href="01 Mat.html">Matthew</a>
+        <a href="02 Mrk.html">Mark</a>
+        <a href="03 Luk.html">Luke</a>
+        <a href="04 Jhn.html">John</a>
+    </div>
+    <div class="item h3">
+        <a class="sec1">Catholic Letters</a>
+        <a href="19 Heb.html">Hebrews</a>
+        <a href="20 Jas.html">James</a>
+        <a href="21 1Pe.html">1 Peter</a>
+        <a href="22 2Pe.html">2 Peter</a>
+        <a href="23 1Jn.html">1 John</a>
+        <a href="24 2Jn.html">2 John</a>
+        <a href="25 3Jn.html">3 John</a>
+        <a href="26 Jud.html">Jude</a>
+    </div>
+    <div class="item h4">
+	<a class="sec1">Apocalypse</a>
+        <a href="27 Rev.html">Revelation</a>
     </div>
 </div>
+<div class="column cdot">
+    <div class="item h1">
+        <a class="sec1">Sequel</a>
+        <a href="05 Act.html">Acts of the Apostles</a>
+    </div>
+    <div class="item h2">
+        <a class="sec1">Saint Paul’s Letters</a>
+        <a href="06 Rom.html">Romans</a>
+        <a href="07 1Co.html">1 Corinthians</a>
+        <a href="08 2Co.html">2 Corinthians</a>
+        <a href="09 Gal.html">Galatians</a>
+        <a href="10 Eph.html">Ephesians</a>
+        <a href="11 Php.html">Philippians</a>
+        <a href="12 Col.html">Colossians</a>
+        <a href="13 1Th.html">1 Thessalonians</a>
+        <a href="14 2Th.html">2 Thessalonians</a>
+        <a href="15 1Ti.html">1 Timothy</a>
+        <a href="16 2Ti.html">2 Timothy</a>
+        <a href="17 Tit.html">Titus</a>
+        <a href="18 Phm.html">Philemon</a>
+    </div>
+</div>
+<div class="item ch csolid">
+    <a class="sec0" id="lxx">Septuagint</a>
+</div>
+<div class="column csolid">
+    <div class="item c0">
+        <a class="sec1">Pentateuch</a>
+        <a href="lxx-01 Gen.html">Genesis</a>
+        <a href="lxx-02 Exo.html">Exodus</a>
+        <a href="lxx-03 Lev.html">Leviticus</a>
+        <a href="lxx-04 Num.html">Numbers</a>
+        <a href="lxx-05 Deu.html">Deuteronomy</a>
+    </div>
+    <div class="item c3">
+        <a class="sec1">Major Prophets</a>
+        <a href="lxx-23 Isa.html">Isaiah</a>
+        <a href="lxx-24 Jer.html">Jeremiah</a>
+        <a href="lxx-25 Lam.html">Lamentations</a>
+        <a href="lxx-46 Bar.html">Baruch</a>
+        <a href="lxx-26 Ezk.html">Ezekiel</a>
+        <a href="lxx-27 Dan.html">Daniel</a>
+
+        <a class="sec1">Minor Prophets</a>
+        <a href="lxx-28 Hos.html">Hosea</a>
+        <a href="lxx-29 Jol.html">Joel</a>
+        <a href="lxx-30 Amo.html">Amos</a>
+        <a href="lxx-31 Oba.html">Obadiah</a>
+        <a href="lxx-32 Jon.html">Jonah</a>
+        <a href="lxx-33 Mic.html">Micah</a>
+        <a href="lxx-34 Nam.html">Nahum</a>
+        <a href="lxx-35 Hab.html">Habakkuk</a>
+        <a href="lxx-36 Zep.html">Zephaniah</a>
+        <a href="lxx-37 Hag.html">Haggai</a>
+        <a href="lxx-38 Zec.html">Zechariah</a>
+        <a href="lxx-39 Mal.html">Malachi</a>
+    </div>
+</div>
+<div class="column cdot">
+    <div class="item c1">
+        <a class="sec1">Later Historical</a>
+        <a href="lxx-06 Jos.html">Joshua</a>
+        <a href="lxx-07 Jdg.html">Judges</a>
+        <a href="lxx-08 Rut.html">Ruth</a>
+        <a href="lxx-09 1Sa.html">1 Samuel</a>
+        <a href="lxx-10 2Sa.html">2 Samuel</a>
+        <a href="lxx-11 1Ki.html">1 Kings</a>
+        <a href="lxx-12 2Ki.html">2 Kings</a>
+        <a href="lxx-13 1Ch.html">1 Chronicles</a>
+        <a href="lxx-14 2Ch.html">2 Chronicles</a>
+        <a href="lxx-15 Ezr.html">Ezra</a>
+        <a href="lxx-16 Neh.html">Nehemiah</a>
+        <a href="lxx-40 Jdt.html">Judith</a>
+        <a href="lxx-41 Tob.html">Tobit</a>
+        <a href="lxx-17 Est.html">Esther</a>
+        <a href="lxx-42 1Mc.html">1 Maccabees</a>
+        <a href="lxx-43 2Mc.html">2 Maccabees</a>
+    </div>
+    <div class="item c2">
+        <a class="sec1">Wisdom</a>
+        <a href="lxx-18 Job.html">Job</a>
+        <a href="lxx-19 Psa.html">Psalms</a>
+        <a href="lxx-20 Pro.html">Proverbs</a>
+        <a href="lxx-21 Ecc.html">Ecclesiastes</a>
+        <a href="lxx-22 Sng.html">Song of Solomon</a>
+        <a href="lxx-44 Wis.html">Wisdom</a>
+        <a href="lxx-45 Sir.html">Sirach</a>
+    </div>
 </div>
 
+</div>
+<div id="footer" class="headfoot">
+<a href="http://gfassero.github.io/HIERO-NT/" class="title">HIERO-NT</a><a href="http://github.com/gfassero/HIERO-NT/commits/">updated 17 Apr 25</a>
+</div>
+</div>
 </body>
 </html>
