@@ -1,28 +1,45 @@
-﻿.edit, p.subtitle {
+﻿SPAN {
+    box-sizing: content-box;
+}
+
+.edit, p.subtitle {
     color: gray;
 }
 
-.m {
-    border-bottom-color: #9090ff !important;
-    border-radius: 0%;
-}
-.f {
-    border-bottom-color: #ff6060 !important;
-    border-radius: 50%;
-}
-.c {
-    border-bottom-color: #cccccc !important;
-    border-radius: 100pt;
-}
-
+/* SOLID, COLORED UNDERLINE => GENDER */
 .m, .f, .c {
     border-bottom: 1px solid;
 }
-.i {
-    border-bottom: 2px dashed;
-    border-bottom-color: #cccccc;
+.m {
+    border-bottom-color: #99f !important;
+    border-radius: 0%;
 }
-.p {
-    border-bottom: 3px double;
-    border-bottom-color: #cccccc;
+.f {
+    border-bottom-color: #f66 !important;
+    border-radius: 50%;
+}
+.c {
+    border-bottom-color: #888 !important;
+    border-radius: 100pt;
+}
+
+
+/* GRAY SUB-UNDERLINE, DASHED or CAPPED => ASPECT */
+.i, .p {
+  position: relative;
+}
+.i::after, .p::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 15%;
+    width: 70%;
+    border: 1px solid #666;
+}
+.i::after {
+    border-style: none none dashed none; /* BOTTOM ONLY */
+}
+.p::after {
+    height: 1px;
+    border-style: none solid solid solid;  /* BOTTOM + SIDES */
 }
