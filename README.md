@@ -1,7 +1,7 @@
 # HIERO-NT
 
 ## Introduction
-HIERO-NT is an upcoming partial translation of the New Testament from Greek into English. For more information, see [HIERO](http://gfassero.github.io/HIERO/), the Old Testament parallel project.
+HIERO-NT is a partial translation of the New Testament from Greek into English. For more information, see [HIERO](http://gfassero.github.io/HIERO/), the Old Testament parallel project.
 
 You can browse the beginnings of [HIERO-NT here](http://gfassero.github.io/HIERO-NT/read/).
 

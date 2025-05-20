@@ -32,8 +32,8 @@
     content: "";
     position: absolute;
     bottom: -2px;
-    left: 15%;
-    width: 70%;
+    left: 10%;
+    width: 80%;
     border: 1px solid #666;
 }
 .i::after {
