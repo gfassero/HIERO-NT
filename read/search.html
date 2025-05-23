@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<!-- This content may not be copied, shared, distributed, modified, or used for any purpose,
+     commercial or non-commercial, without prior written permission from the author. -->
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HIERO - Hebrew Idiom in English Roots</title>
+<link rel="stylesheet" href="styles.css?v=3" />
+<link rel="stylesheet" href="styles-search.css?v=3b" />
+<script type="text/javascript" src="search-names.js?v=3c"></script>
+<script type="text/javascript" src="search-exec.js?v=3c"></script>
+<style>
+#translation a:link,
+#translation a:visited {
+    text-decoration: none;
+    color: black;
+}
+#translation a:hover {
+    background-color: var(--navhover);
+}
+#translation a:active {
+    background-color: var(--litebg);
+}
+
+.loading-message {
+  background: linear-gradient(to right, black 46%, var(--boldhilite) 50%, black 54%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  background-size: 400% auto;
+  animation: moveStripe 2.4s linear infinite;
+}
+@keyframes moveStripe {
+  0% {background-position: right center;}
+  100% {background-position: left center;}
+}
+</style>
+</head>
+<body>
+<div id="header" class="headfoot">
+<a href="http://gfassero.github.io/HIERO/" class="split">About</a><a href="key.html">Key</a><a href="index.html">Bible</a>
+</div>
+<div id="printable" class="panel">
+<div id="translation"></div>
+<div id="footer" class="headfoot">
+<a href="http://gfassero.github.io/HIERO/" class="title">HIERO</a>
+</div>
+</div>
+</body>
+</html>
