@@ -22,3 +22,7 @@
     transition: initial !important;
     scroll-behavior: initial !important;
 }
+
+.popup {
+    box-shadow: none;
+}

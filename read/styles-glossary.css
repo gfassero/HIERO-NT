@@ -56,21 +56,21 @@
     display: table-cell;
 }
 
-details {
-    padding-left: 2em;
-}
-
 summary {
     margin-left: -2em;
 }
-
 details {
-    border-left: 1px solid transparent;
-    border-radius: var(--cornerradius);
+    padding-left: 2em;
+    position: relative;
 }
-details[open] {
-    border-left: var(--solidborder); /* Dark border when open */
-    border-radius: var(--cornerradius);
+details::before {
+    content: '';
+    position: absolute;
+    top: 1.1lh;
+    left: 1em;
+    height: calc(100% - 1.2lh);
+    width: 1px;
+    background-color: black;
 }
 
 @media print {
