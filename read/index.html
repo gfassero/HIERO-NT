@@ -19,13 +19,39 @@
         border-right-width: 0;
         border-radius: 0;
     }
-    #table-of-sections a {
+
+    #table-of-sections > div  > div > a,
+    #table-of-sections .a-doubler {
         --horizmargin: 0.5em;
         float: initial;
         display: block;
         padding: 0.4em var(--horizmargin);
         margin: 0 var(--horizmargin);
         width: calc(100% - 2 * var(--horizmargin));
+    }
+    #table-of-sections .a-doubler {
+        padding: 0;
+	display: flex;
+    }
+    #table-of-sections .a-doubler a {
+        float: initial;
+        padding: 0.4em var(--horizmargin);
+	margin: 0;
+	flex: 1 1 content;
+    }
+    #table-of-sections .a-doubler span {
+        float: initial;
+        padding: 0.4em 0;
+	margin: 0;
+	flex: 0 0 content;
+    }
+    #table-of-sections .a-doubler a:first-child {
+        text-align: right;
+        padding-right: 0;
+    }
+    #table-of-sections .a-doubler a:last-child {
+        text-align: left;
+        padding-left: 0;
     }
 
     #table-of-sections {
@@ -107,10 +133,10 @@
             grid-template-rows: auto auto auto auto 1fr;
             grid-template-areas:
                 "hh hh hh ch ch ch"
-                "h0 h2 h3 c0 c1 c3"
-                "h1 h2 h3 c0 c1 c3"
-                "h1 h2 h3 c2 c1 c3"
-                "h1 h2 h4 c2 c1 c3";
+                "h0 h2 h3 c0 c2 c3"
+                "h1 h2 h3 c0 c2 c3"
+                "h1 h2 h3 c1 c2 c3"
+                "h1 h2 h4 c1 c2 c3";
         }
         .column {display: contents;}
         .ch, .c0, .c2 {
@@ -141,23 +167,6 @@
         <a href="03 Luk.html">Luke</a>
         <a href="04 Jhn.html">John</a>
     </div>
-    <div class="item h3">
-        <a class="sec1">Catholic Letters</a>
-        <a href="19 Heb.html">Hebrews</a>
-        <a href="20 Jas.html">James</a>
-        <a href="21 1Pe.html">1 Peter</a>
-        <a href="22 2Pe.html">2 Peter</a>
-        <a href="23 1Jn.html">1 John</a>
-        <a href="24 2Jn.html">2 John</a>
-        <a href="25 3Jn.html">3 John</a>
-        <a href="26 Jud.html">Jude</a>
-    </div>
-    <div class="item h4">
-	<a class="sec1">Apocalypse</a>
-        <a href="27 Rev.html">Revelation</a>
-    </div>
-</div>
-<div class="column cdot">
     <div class="item h1">
         <a class="sec1">Acts</a>
         <a href="05 Act.html">Acts of the Apostles</a>
@@ -179,6 +188,23 @@
         <a href="18 Phm.html">Philemon</a>
     </div>
 </div>
+<div class="column cdot">
+    <div class="item h3">
+        <a class="sec1">Catholic Letters</a>
+        <a href="19 Heb.html">Hebrews</a>
+        <a href="20 Jas.html">James</a>
+        <a href="21 1Pe.html">1 Peter</a>
+        <a href="22 2Pe.html">2 Peter</a>
+        <a href="23 1Jn.html">1 John</a>
+        <a href="24 2Jn.html">2 John</a>
+        <a href="25 3Jn.html">3 John</a>
+        <a href="26 Jud.html">Jude</a>
+    </div>
+    <div class="item h4">
+	<a class="sec1">Apocalypse</a>
+        <a href="27 Rev.html">Revelation</a>
+    </div>
+</div>
 <div class="item ch csolid">
     <a class="sec0" id="lxx">Septuagint</a>
 </div>
@@ -191,6 +217,45 @@
         <a href="lxx-04 Num.html">Numbers</a>
         <a href="lxx-05 Deu.html">Deuteronomy</a>
     </div>
+    <div class="item c1">
+        <a class="sec1">Histories</a>
+        <a href="lxx-06 Jos.html">Joshua</a>
+        <a href="lxx-07 Jdg.html">Judges</a>
+        <a href="lxx-08 Rut.html">Ruth</a>
+        <div class="a-doubler">
+            <a href="lxx-09 1Sa.html">Samuel I</a><span>&ndash;</span>
+            <a href="lxx-10 2Sa.html">II</a>
+        </div>
+        <div class="a-doubler">
+            <a href="lxx-11 1Ki.html">Kings I</a><span>&ndash;</span>
+            <a href="lxx-12 2Ki.html">II</a>
+        </div>
+        <div class="a-doubler">
+            <a href="lxx-13 1Ch.html">Chronicles I</a><span>&ndash;</span>
+            <a href="lxx-14 2Ch.html">II</a>
+        </div>
+        <div class="a-doubler">
+            <a href="lxx-15 Ezr.html">Ezra</a><span>&ndash;</span>
+            <a href="lxx-16 Neh.html">Nehemiah</a>
+        </div>
+        <a href="lxx-40 Jdt.html">Judith</a>
+        <a href="lxx-41 Tob.html">Tobit</a>
+        <a href="lxx-17 Est.html">Esther</a>
+        <a href="lxx-42 1Mc.html">1 Maccabees</a>
+        <a href="lxx-43 2Mc.html">2 Maccabees</a>
+    </div>
+    <div class="item c2">
+        <a class="sec1">Wisdom</a>
+        <a href="lxx-18 Job.html">Job</a>
+        <a href="lxx-19 Psa.html">Psalms</a>
+        <a href="lxx-20 Pro.html">Proverbs</a>
+        <a href="lxx-21 Ecc.html">Ecclesiastes</a>
+        <a href="lxx-22 Sng.html">Song of Solomon</a>
+        <a href="lxx-44 Wis.html">Wisdom</a>
+        <a href="lxx-45 Sir.html">Sirach</a>
+    </div>
+</div>
+<div class="column cdot">
     <div class="item c3">
         <a class="sec1">Major Prophets</a>
         <a href="lxx-23 Isa.html">Isaiah</a>
@@ -215,41 +280,10 @@
         <a href="lxx-39 Mal.html">Malachi</a>
     </div>
 </div>
-<div class="column cdot">
-    <div class="item c1">
-        <a class="sec1">Later Historical</a>
-        <a href="lxx-06 Jos.html">Joshua</a>
-        <a href="lxx-07 Jdg.html">Judges</a>
-        <a href="lxx-08 Rut.html">Ruth</a>
-        <a href="lxx-09 1Sa.html">1 Samuel</a>
-        <a href="lxx-10 2Sa.html">2 Samuel</a>
-        <a href="lxx-11 1Ki.html">1 Kings</a>
-        <a href="lxx-12 2Ki.html">2 Kings</a>
-        <a href="lxx-13 1Ch.html">1 Chronicles</a>
-        <a href="lxx-14 2Ch.html">2 Chronicles</a>
-        <a href="lxx-15 Ezr.html">Ezra</a>
-        <a href="lxx-16 Neh.html">Nehemiah</a>
-        <a href="lxx-40 Jdt.html">Judith</a>
-        <a href="lxx-41 Tob.html">Tobit</a>
-        <a href="lxx-17 Est.html">Esther</a>
-        <a href="lxx-42 1Mc.html">1 Maccabees</a>
-        <a href="lxx-43 2Mc.html">2 Maccabees</a>
-    </div>
-    <div class="item c2">
-        <a class="sec1">Wisdom</a>
-        <a href="lxx-18 Job.html">Job</a>
-        <a href="lxx-19 Psa.html">Psalms</a>
-        <a href="lxx-20 Pro.html">Proverbs</a>
-        <a href="lxx-21 Ecc.html">Ecclesiastes</a>
-        <a href="lxx-22 Sng.html">Song of Solomon</a>
-        <a href="lxx-44 Wis.html">Wisdom</a>
-        <a href="lxx-45 Sir.html">Sirach</a>
-    </div>
-</div>
 
 </div>
 <div id="footer" class="headfoot">
-<a href="http://gfassero.github.io/HIERO-NT/" class="title">HIERO-NT</a><a href="http://github.com/gfassero/HIERO-NT/commits/">updated 17 Apr 25</a>
+<a href="http://gfassero.github.io/HIERO-NT/" class="title">HIERO-NT</a><a href="http://github.com/gfassero/HIERO-NT/commits/">updated 16 Feb 26</a>
 </div>
 </div>
 </body>
