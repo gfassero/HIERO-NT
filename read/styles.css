@@ -1,6 +1,12 @@
-@import "styles-constants.css?v=4";
-@import "styles-paragraph.css?v=4";
-@import "styles-span-nt.css?v=4";
-@import "styles-headfoot.css?v=4" screen;
+@import "res/styles-constants.css?v=4";
+@import "res/styles-paragraph.css?v=4";
+@import "res/styles-headfoot.css?v=4" screen;
 
-@import "styles-dev.css?v=4";
+@import "styles-span-nt.css?v=4";
+
+:root {
+  --hue-main: 140;
+
+  --boldmain:    hsl(var(--hue-main)  95% 30%); /* DARK BLUE */
+
+}

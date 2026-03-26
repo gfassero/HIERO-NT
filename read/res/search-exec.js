@@ -22,13 +22,13 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log("Loaded index:", Object.keys(index).length, "roots indexed.");
 //            const matchingCitations = index[searchQuery];
             let matchingCitations = [];
-            for (const root in index) {
-                if (root.split(',').map(r => r.trim()).includes(searchQuery)) {
-                    matchingCitations = matchingCitations.concat(index[root]);
-                }
-            }
-            // Remove duplicate citations if any
-            matchingCitations = [...new Set(matchingCitations)];
+            for (const root in index) {
+                if (root.split(',').map(r => r.trim()).includes(searchQuery)) {
+                    matchingCitations = matchingCitations.concat(index[root]);
+                }
+            }
+            // Remove duplicate citations if any
+            matchingCitations = [...new Set(matchingCitations)];
 
 
             if (!matchingCitations || matchingCitations.length === 0) {
@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
             resultsContainer.innerHTML = `<p class="book error">Error loading search index.</p>`;
             document.title = `HIERO | Search (Error)`;
         });
+
 });
 
 function fetchAndDisplayResults(query, citations, resultsContainer) {
@@ -65,6 +66,7 @@ function fetchAndDisplayResults(query, citations, resultsContainer) {
             resultsContainer.appendChild(initialSummary);
             document.title = `HIERO | Root ${query} (0)`;
             let summaryElement = initialSummary;
+            const queryEncoded = encodeURIComponent(query);
 
             citations.forEach(citation => {
                 if (fullData[citation]) {
@@ -73,18 +75,18 @@ function fetchAndDisplayResults(query, citations, resultsContainer) {
 
 
                     fullData[citation].forEach(wordObj => {
-                        if (wordObj.r) {
-                            const roots = wordObj.r.split(',').map(r => r.trim());
-                            if (roots.includes(query)) {
-                                lineParts.push(`<span class="match">${wordObj.t}</span>`);
-                                hasMatchInLine = true;
-                            } else {
-                                lineParts.push(wordObj.t);
-                            }
-                        } else {
-                            lineParts.push(wordObj.t);
-                        }
-                    });
+                        if (wordObj.r) {
+                            const roots = wordObj.r.split(',').map(r => r.trim());
+                            if (roots.includes(query)) {
+                                lineParts.push(`<span class="match">${wordObj.t}</span>`);
+                                hasMatchInLine = true;
+                            } else {
+                                lineParts.push(wordObj.t);
+                            }
+                        } else {
+                            lineParts.push(wordObj.t);
+                        }
+                    });
 
                     if (hasMatchInLine) {
                         const pElement = document.createElement('p');
@@ -93,7 +95,7 @@ function fetchAndDisplayResults(query, citations, resultsContainer) {
 
                         const trimmedCitationForLink = citation.split(/_/)[0];
                         let link = document.createElement("a");
-                        link.href = bookFiles[trimmedCitationForLink.substring(0, 3)] + ".html?q=" + query + "#x" + trimmedCitationForLink;
+                        link.href = bookFiles[trimmedCitationForLink.substring(0, 3)] + ".html?q=" + queryEncoded + "#x" + trimmedCitationForLink;
                         link.appendChild(pElement);
                         resultsHTML += link.outerHTML;
                         matchCount++;

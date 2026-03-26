@@ -1,7 +1,7 @@
 # HIERO-NT
 
 ## Introduction
-HIERO-NT is a partial translation of the New Testament from Greek into English. For more information, see [HIERO](http://gfassero.github.io/HIERO/), the Old Testament parallel project.
+HIERO-NT is a partial translation of the New Testament and Septuagint from Greek into English. For more information, see [HIERO](http://gfassero.github.io/HIERO/), the parallel project for the Old Testament.
 
 You can browse the beginnings of [HIERO-NT here](http://gfassero.github.io/HIERO-NT/read/).
 
@@ -13,4 +13,4 @@ HIERO-NT also uses some data from the “[Translators Brief lexicon of Extended 
 “[Rahlfs' LXX edition 1935 with features](http://github.com/CenterBLC/LXX/tree/main/tf/1935)” by the [Center of Biblical Languages and Computing](http://github.com/CenterBLC) is licensed under the [MIT License](http://opensource.org/license/mit). RLXX1935/CBLC provides most of the Septuagint text from which HIERO-NT works, as well as some lexical and grammatical tags on which HIERO-NT’s Greek parsing dictionary is partially based.
 
 ## No License
-HIERO-NT is still in progress and updated often. I have posted it online only so that I can receive feedback on it. As a result, I am not offering any license to use my work. Nothing on this website may be copied, shared, distributed, modified, or used for any purpose, commercial or non-commercial, without my prior written permission. Feel free to read and to provide suggestions for improvement.
+HIERO-NT is still in progress and updated often. I am not offering any license to use my work. Nothing on this website may be copied, shared, distributed, modified, or used for any purpose, commercial or non-commercial, without my prior written permission. Feel free to read and to provide suggestions.

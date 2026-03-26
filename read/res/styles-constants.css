@@ -16,9 +16,9 @@
 
   --readwidth: 60em;
 
-  --cornerradius: 3.75pt;
+  --cornerradius: 7pt;
   --solidborder: 1px solid var(--darkborder);
-  --dottedborder: 1px dotted var(--darkborder);
+  --dottedborder: 1px solid var(--textgray);
 }
 
 *, #table-of-sections a {
@@ -27,7 +27,8 @@
     transition: color 0.15s, background-color 0.15s;
     box-sizing: border-box;
 }
-.panel a:not(#table-of-sections a) {transition: none;}
+
+/* .panel a:not(#table-of-sections a):not(a.glossary-entry) {transition: none;} */
 
 body {
     display: flex;
@@ -37,6 +38,18 @@ body {
     padding: 0;
     margin: 0;
     font-family: serif;
+    position: relative;
+}
+body::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('geofloral8.png');
+    background-position: center;
+    background-repeat: repeat;
+    background-size: auto;
+    filter: invert(1) sepia(1) saturate(10) hue-rotate(calc((var(--hue-main) - 30) * 1deg));
+    z-index: -1;
 }
 
 p {
@@ -74,7 +87,7 @@ p {
     max-width: 60em;
 }
 
-.match  {
+.match {
     background-color: var(--boldhilite);
     border-radius: var(--cornerradius);
 }

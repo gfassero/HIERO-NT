@@ -1,0 +1,16 @@
+html #translation {
+    a {
+        border-radius: var(--cornerradius);
+    }
+    a:link,
+    a:visited {
+	text-decoration: none;
+	color: black;
+    }
+    a:hover {
+	background-color: var(--navhover);
+    }
+    a:active {
+	background-color: var(--litebg);
+    }
+}

@@ -1,0 +1,44 @@
+﻿@import "styles-linklist.css?v=2b";
+
+html #translation {
+    p,
+    p.in1,
+    p.in2 {
+        padding-left: 4em; /* Aligns the text flush */
+    }
+
+    /* VERSE and CHAPTER NUMBERING */
+
+    p::before,
+    span.inline,
+    p.chapter::before,
+    span.inline.chapter {
+        font-size: 60%;
+        font-weight: normal;
+        left: 0;
+        width: 6.66em;
+    }
+
+    p::before {
+        content: attr(data-cit); /* Displays the paragraph number */
+        text-align: left; /* Aligns the number to the right within its box */
+    }
+
+}
+
+.loading-message {
+    padding-left: 0 !IMPORTANT;
+    padding-bottom: 1px;
+
+    background-image: linear-gradient(var(--darkborder) 0 0);
+    background-repeat: no-repeat;
+
+    animation: l2 3s linear infinite;
+    transition-timing-function: linear;
+}
+@keyframes l2 {
+       0% { background-size: 0% 1.5pt;   background-position: 0% 100%; }
+   49.99% { background-size: 100% 1.5pt; background-position: 0% 100%; }
+      50% { background-size: 100% 1.5pt; background-position: 100% 100%; }
+     100% { background-size: 0% 1.5pt;   background-position: 100% 100%; }
+}

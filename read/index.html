@@ -6,62 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HIERO-NT - Greek Idiom in English Roots</title>
 <link rel="stylesheet" href="styles.css?v=3" />
+<link rel="stylesheet" href="res/styles-index.css?v=3" />
 <style>
-    a.sec0, a.sec1, a.sec2 {
-        font-weight: bold;
-    }
-    a.sec0:hover, a.sec1:hover, a.sec2:hover {
-        background-color: initial;
-    }
-    a.sec1 {
-        border: var(--dottedborder);
-        border-left-width: 0;
-        border-right-width: 0;
-        border-radius: 0;
-    }
-
-    #table-of-sections > div  > div > a,
-    #table-of-sections .a-doubler {
-        --horizmargin: 0.5em;
-        float: initial;
-        display: block;
-        padding: 0.4em var(--horizmargin);
-        margin: 0 var(--horizmargin);
-        width: calc(100% - 2 * var(--horizmargin));
-    }
-    #table-of-sections .a-doubler {
-        padding: 0;
-	display: flex;
-    }
-    #table-of-sections .a-doubler a {
-        float: initial;
-        padding: 0.4em var(--horizmargin);
-	margin: 0;
-	flex: 1 1 content;
-    }
-    #table-of-sections .a-doubler span {
-        float: initial;
-        padding: 0.4em 0;
-	margin: 0;
-	flex: 0 0 content;
-    }
-    #table-of-sections .a-doubler a:first-child {
-        text-align: right;
-        padding-right: 0;
-    }
-    #table-of-sections .a-doubler a:last-child {
-        text-align: left;
-        padding-left: 0;
-    }
-
-    #table-of-sections {
-        display: grid;
-        column-gap: initial;
-        width: fit-content;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
     .hh {grid-area: hh;}
     .h0 {grid-area: h0;}
     .h1 {grid-area: h1;}
@@ -74,7 +20,7 @@
     .c2 {grid-area: c2;}
     .c3 {grid-area: c3;}
     
-    @media (max-width: 25em) {                         /* ONE COLUMN */
+    @media (max-width: 25em) {                         	/* ONE COLUMN */
         #table-of-sections {
             grid-template-columns: 1fr;
             grid-template-rows: auto;
@@ -93,11 +39,8 @@
     .c2 {order: 10;}
     .c3 {order: 11;}
 
-        .hh, .ch {
-            border-top: var(--solidborder);
-        }
     }
-    @media (min-width: 25em) and (max-width: 42em) {  /* TWO COLUMNS */
+    @media (min-width: 25em) and (max-width: 42em) {  	/* TWO COLUMNS */
         #table-of-sections {
             grid-template-columns: repeat(2, 1fr);
             grid-template-areas:
@@ -113,7 +56,7 @@
             border-left: var(--dottedborder);
         }
     }
-    @media (min-width: 42em) and (max-width: 61em) { /* FOUR COLUMNS */
+    @media (min-width: 42em) and (max-width: 61em) { 	/* FOUR COLUMNS */
         #table-of-sections {
             grid-template-columns: repeat(4, 1fr);
             grid-template-areas:
@@ -127,7 +70,7 @@
             border-left: var(--dottedborder);
         }
     }
-    @media (min-width: 61em) { /* SIX COLUMNS */
+    @media (min-width: 61em) { 				/* SIX COLUMNS */
         #table-of-sections {
             grid-template-columns: repeat(6, 1fr);
             grid-template-rows: auto auto auto auto 1fr;
@@ -139,10 +82,10 @@
                 "h1 h2 h4 c1 c2 c3";
         }
         .column {display: contents;}
-        .ch, .c0, .c2 {
+        .ch, .c0, .c1 {
             border-left: var(--solidborder);
         }
-        .h2, .h3, .h4, .c1, .c3 {
+        .h2, .h3, .h4, .c2, .c3 {
             border-left: var(--dottedborder);
         }
     }
@@ -190,7 +133,7 @@
 </div>
 <div class="column cdot">
     <div class="item h3">
-        <a class="sec1">Catholic Letters</a>
+        <a class="sec1">General Letters</a>
         <a href="19 Heb.html">Hebrews</a>
         <a href="20 Jas.html">James</a>
         <a href="21 1Pe.html">1 Peter</a>
@@ -201,7 +144,7 @@
         <a href="26 Jud.html">Jude</a>
     </div>
     <div class="item h4">
-	<a class="sec1">Apocalypse</a>
+	<a class="sec1">Prophecy</a>
         <a href="27 Rev.html">Revelation</a>
     </div>
 </div>
@@ -218,7 +161,7 @@
         <a href="lxx-05 Deu.html">Deuteronomy</a>
     </div>
     <div class="item c1">
-        <a class="sec1">Histories</a>
+        <a class="sec1">Later Histories</a>
         <a href="lxx-06 Jos.html">Joshua</a>
         <a href="lxx-07 Jdg.html">Judges</a>
         <a href="lxx-08 Rut.html">Ruth</a>
@@ -257,7 +200,7 @@
 </div>
 <div class="column cdot">
     <div class="item c3">
-        <a class="sec1">Major Prophets</a>
+        <a class="sec1">Longer Prophets</a>
         <a href="lxx-23 Isa.html">Isaiah</a>
         <a href="lxx-24 Jer.html">Jeremiah</a>
         <a href="lxx-25 Lam.html">Lamentations</a>
@@ -265,7 +208,7 @@
         <a href="lxx-26 Ezk.html">Ezekiel</a>
         <a href="lxx-27 Dan.html">Daniel</a>
 
-        <a class="sec1">Minor Prophets</a>
+        <a class="sec1">Shorter Prophets</a>
         <a href="lxx-28 Hos.html">Hosea</a>
         <a href="lxx-29 Jol.html">Joel</a>
         <a href="lxx-30 Amo.html">Amos</a>

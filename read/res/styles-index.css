@@ -1,0 +1,59 @@
+    a.sec0, a.sec1, a.sec2, .christian > a {
+        font-weight: bold;
+    }
+    a.sec0, .christian > a {
+	font-variant: small-caps;
+    }
+    a.sec0:hover, a.sec1:hover, a.sec2:hover {
+        background-color: initial;
+    }
+    a.sec1 {
+        border: var(--dottedborder);
+        border-left-width: 0;
+        border-right-width: 0;
+        border-radius: 0;
+    }
+
+    #table-of-sections .item > * {
+        --horizmargin: 0.5em;
+        float: initial;
+        display: block;
+        padding: 0.4em var(--horizmargin);
+        margin: 0 var(--horizmargin);
+        width: calc(100% - 2 * var(--horizmargin));
+    }
+
+    #table-of-sections .a-doubler {
+        padding: 0;
+	display: flex;
+    }
+    #table-of-sections .a-doubler a {
+        float: initial;
+        padding: 0.4em var(--horizmargin);
+	margin: 0;
+	flex: 1 1 content;
+    }
+    #table-of-sections .a-doubler span {
+        float: initial;
+        padding: 0.4em 0;
+	margin: 0;
+	flex: 0 0 content;
+    }
+    #table-of-sections .a-doubler a:first-child {
+        text-align: right;
+        padding-right: 0;
+        border-radius: var(--cornerradius) 0 0 var(--cornerradius);
+    }
+    #table-of-sections .a-doubler a:last-child {
+        text-align: left;
+        padding-left: 0;
+        border-radius: 0 var(--cornerradius) var(--cornerradius) 0;
+    }
+
+    #table-of-sections {
+        display: grid;
+        column-gap: initial;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+    }
