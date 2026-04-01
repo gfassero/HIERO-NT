@@ -25,14 +25,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 const trimmedRoot = root.trim();
                 const trimmedRootEncoded = encodeURIComponent(trimmedRoot);
 		let gloss = trimmedRoot;
+		let userFacingSearchQuery = "";
 
 		const result = findGloss(trimmedRoot);
+		    linksHTML += "<br />"
 		if (result) {
 		    gloss = result.glossHeb + " / " + result.glossXlit;
+		    userFacingSearchQuery = result.glossHeb;
+                    linksHTML += `<a href="glossary.html#x${trimmedRootEncoded}" target="_blank" title="Glossary for ${userFacingSearchQuery}">${gloss}</a>`;
+		} else {
+		    linksHTML += trimmedRootEncoded;
+		    userFacingSearchQuery = trimmedRootEncoded;
 		}
-		
-                linksHTML += `<br /><a href="glossary.html#x${trimmedRootEncoded}" target="_blank" title="Glossary for ${result.glossHeb}">${gloss}</a>
-			<a href="search.html?q=${trimmedRootEncoded}" target="_blank" title="Search ${result.glossHeb}">${searchicon}</a>`;
+		linksHTML += ` <a href="search.html?q=${trimmedRootEncoded}" target="_blank" title="Search ${userFacingSearchQuery}">${searchicon}</a>`;
 		
 		highlightMatches(trimmedRoot)
             });
@@ -105,6 +110,7 @@ function findGloss(strongsNumber) {
     const entry = glossaryData["x" + strongsNumber];
 
     if (!entry) {
+        console.log(strongsNumber + ' not found in glossary.');
         return null;
     }
 
