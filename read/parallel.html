@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<!-- This content may not be copied, shared, distributed, modified, or used for any purpose,
+     commercial or non-commercial, without prior written permission from the author. -->
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HIERO - Hebrew Idiom in English Roots</title>
+<link rel="stylesheet" href="res/styles-constants.css?v=4" />
+<style>
+
+body {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+}
+
+.pane {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+
+iframe {
+  flex: 1;
+  border: none;
+  min-height: 0;
+  display: block;
+}
+
+#splitter:hover,
+#splitter.dragging {
+  background: var(--darkborder);
+}
+#splitter {
+  width: 3pt;
+  background: var(--nearblack);
+  cursor: col-resize;
+  flex-shrink: 0;
+  position: relative;
+}
+#splitter::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 1pt;
+  height: 36pt;
+  background: var(--whitetext);
+}
+</style>
+</head>
+<body>
+
+  <div class="pane" id="pane0">
+    <iframe id="frame0"></iframe>
+  </div>
+
+  <div id="splitter"></div>
+
+  <div class="pane" id="pane1">
+    <iframe id="frame1"></iframe>
+  </div>
+
+
+<script>
+
+const frames = [
+  document.getElementById('frame0'),
+  document.getElementById('frame1'),
+];
+
+/* ── File map ──────────────────────────────────────────────────────────────
+   Each row is [HIERO path, HIERO-NT path].
+   HIERO-NT entries are unique; HIERO entries may repeat.
+   When navigating from HIERO and multiple rows share the same HIERO path,
+   the viewer prefers the row whose HIERO-NT path matches what is already
+   showing in the HIERO-NT frame, then falls back to the first match.
+─────────────────────────────────────────────────────────────────────────── */
+const fileMap = [
+  ["HIERO/read/index.html", "HIERO-NT/read/index.html"],
+  ["HIERO/read/index.html", "HIERO-NT/read/01%20Mat.html"],
+  ["HIERO/read/index.html", "HIERO-NT/read/02%20Mrk.html"],
+  ["HIERO/read/index.html", "HIERO-NT/read/03%20Luk.html"],
+  ["HIERO/read/index.html", "HIERO-NT/read/04%20Jhn.html"],
+  ["HIERO/read/index.html", "HIERO-NT/read/05%20Act.html"],
+  ["HIERO/read/index.html", "HIERO-NT/read/06%20Rom.html"],
+  ["HIERO/read/index.html", "HIERO-NT/read/07%201Co.html"],
+  ["HIERO/read/index.html", "HIERO-NT/read/08%202Co.html"],
+  ["HIERO/read/index.html", "HIERO-NT/read/09%20Gal.html"],
+  ["HIERO/read/index.html", "HIERO-NT/read/10%20Eph.html"],
+  ["HIERO/read/index.html", "HIERO-NT/read/11%20Php.html"],
+  ["HIERO/read/index.html", "HIERO-NT/read/12%20Col.html"],
+  ["HIERO/read/index.html", "HIERO-NT/read/13%201Th.html"],
+  ["HIERO/read/index.html", "HIERO-NT/read/14%202Th.html"],
+  ["HIERO/read/index.html", "HIERO-NT/read/15%201Ti.html"],
+  ["HIERO/read/index.html", "HIERO-NT/read/16%202Ti.html"],
+  ["HIERO/read/index.html", "HIERO-NT/read/17%20Tit.html"],
+  ["HIERO/read/index.html", "HIERO-NT/read/18%20Phm.html"],
+  ["HIERO/read/index.html", "HIERO-NT/read/19%20Heb.html"],
+  ["HIERO/read/index.html", "HIERO-NT/read/20%20Jas.html"],
+  ["HIERO/read/index.html", "HIERO-NT/read/21%201Pe.html"],
+  ["HIERO/read/index.html", "HIERO-NT/read/22%202Pe.html"],
+  ["HIERO/read/index.html", "HIERO-NT/read/23%201Jn.html"],
+  ["HIERO/read/index.html", "HIERO-NT/read/24%202Jn.html"],
+  ["HIERO/read/index.html", "HIERO-NT/read/25%203Jn.html"],
+  ["HIERO/read/index.html", "HIERO-NT/read/26%20Jud.html"],
+  ["HIERO/read/index.html", "HIERO-NT/read/27%20Rev.html"],
+  ["HIERO/read/01%20Gen.html", "HIERO-NT/read/lxx-01%20Gen.html"],
+  ["HIERO/read/02%20Exo.html", "HIERO-NT/read/lxx-02%20Exo.html"],
+  ["HIERO/read/03%20Lev.html", "HIERO-NT/read/lxx-03%20Lev.html"],
+  ["HIERO/read/04%20Num.html", "HIERO-NT/read/lxx-04%20Num.html"],
+  ["HIERO/read/05%20Deu.html", "HIERO-NT/read/lxx-05%20Deu.html"],
+  ["HIERO/read/06%20Jos.html", "HIERO-NT/read/lxx-06%20Jos.html"],
+  ["HIERO/read/07%20Jdg.html", "HIERO-NT/read/lxx-07%20Jdg.html"],
+  ["HIERO/read/08%20Rut.html", "HIERO-NT/read/lxx-08%20Rut.html"],
+  ["HIERO/read/09%201Sa.html", "HIERO-NT/read/lxx-09%201Sa.html"],
+  ["HIERO/read/10%202Sa.html", "HIERO-NT/read/lxx-10%202Sa.html"],
+  ["HIERO/read/11%201Ki.html", "HIERO-NT/read/lxx-11%201Ki.html"],
+  ["HIERO/read/12%202Ki.html", "HIERO-NT/read/lxx-12%202Ki.html"],
+  ["HIERO/read/13%201Ch.html", "HIERO-NT/read/lxx-13%201Ch.html"],
+  ["HIERO/read/14%202Ch.html", "HIERO-NT/read/lxx-14%202Ch.html"],
+  ["HIERO/read/15%20Ezr.html", "HIERO-NT/read/lxx-15%20Ezr.html"],
+  ["HIERO/read/16%20Neh.html", "HIERO-NT/read/lxx-16%20Neh.html"],
+  ["HIERO/read/17%20Est.html", "HIERO-NT/read/lxx-17%20Est.html"],
+  ["HIERO/read/18%20Job.html", "HIERO-NT/read/lxx-18%20Job.html"],
+  ["HIERO/read/19%20Psa.html", "HIERO-NT/read/lxx-19%20Psa.html"],
+  ["HIERO/read/20%20Pro.html", "HIERO-NT/read/lxx-20%20Pro.html"],
+  ["HIERO/read/21%20Ecc.html", "HIERO-NT/read/lxx-21%20Ecc.html"],
+  ["HIERO/read/22%20Sng.html", "HIERO-NT/read/lxx-22%20Sng.html"],
+  ["HIERO/read/23%20Isa.html", "HIERO-NT/read/lxx-23%20Isa.html"],
+  ["HIERO/read/24%20Jer.html", "HIERO-NT/read/lxx-24%20Jer.html"],
+  ["HIERO/read/25%20Lam.html", "HIERO-NT/read/lxx-25%20Lam.html"],
+  ["HIERO/read/26%20Ezk.html", "HIERO-NT/read/lxx-26%20Ezk.html"],
+  ["HIERO/read/27%20Dan.html", "HIERO-NT/read/lxx-27%20Dan.html"],
+  ["HIERO/read/28%20Hos.html", "HIERO-NT/read/lxx-28%20Hos.html"],
+  ["HIERO/read/29%20Jol.html", "HIERO-NT/read/lxx-29%20Jol.html"],
+  ["HIERO/read/30%20Amo.html", "HIERO-NT/read/lxx-30%20Amo.html"],
+  ["HIERO/read/31%20Oba.html", "HIERO-NT/read/lxx-31%20Oba.html"],
+  ["HIERO/read/32%20Jon.html", "HIERO-NT/read/lxx-32%20Jon.html"],
+  ["HIERO/read/33%20Mic.html", "HIERO-NT/read/lxx-33%20Mic.html"],
+  ["HIERO/read/34%20Nam.html", "HIERO-NT/read/lxx-34%20Nam.html"],
+  ["HIERO/read/35%20Hab.html", "HIERO-NT/read/lxx-35%20Hab.html"],
+  ["HIERO/read/36%20Zep.html", "HIERO-NT/read/lxx-36%20Zep.html"],
+  ["HIERO/read/37%20Hag.html", "HIERO-NT/read/lxx-37%20Hag.html"],
+  ["HIERO/read/38%20Zec.html", "HIERO-NT/read/lxx-38%20Zec.html"],
+  ["HIERO/read/39%20Mal.html", "HIERO-NT/read/lxx-39%20Mal.html"],
+  ["HIERO/read/40%20Jdt.html", "HIERO-NT/read/lxx-40%20Jdt.html"],
+  ["HIERO/read/41%20Tob.html", "HIERO-NT/read/lxx-41%20Tob.html"],
+  ["HIERO/read/42%201Mc.html", "HIERO-NT/read/lxx-42%201Mc.html"],
+  ["HIERO/read/43%202Mc.html", "HIERO-NT/read/lxx-43%202Mc.html"],
+  ["HIERO/read/44%20Wis.html", "HIERO-NT/read/lxx-44%20Wis.html"],
+  ["HIERO/read/45%20Sir.html", "HIERO-NT/read/lxx-45%20Sir.html"],
+  ["HIERO/read/46%20Bar.html", "HIERO-NT/read/lxx-46%20Bar.html"],
+];
+
+// Resolve every path to an absolute URL once, for reliable href comparison.
+const base = new URL("../../", location.href);
+const resolvedMap = fileMap.map(pair => 
+  pair.map(rel => new URL(rel, base).href)
+);
+
+/* ── State ─────────────────────────────────────────────────────────────── */
+
+const loaded    = [false, false];
+const aborts    = [null, null];   // AbortController per frame scroll direction
+let syncing     = false;          // scroll-sync guard
+let syncTimer   = null;
+let navSyncing  = false;          // navigation-sync guard
+
+/* ── Navigation sync ───────────────────────────────────────────────────── */
+
+function getFrameHref(frame) {
+  try { return frame.contentWindow.location.href; } catch { return null; }
+}
+
+/**
+ * Called after frame[srcIdx] finishes loading (user-initiated navigation).
+ * Finds the counterpart URL and loads it into the other frame.
+ */
+function syncNavigation(srcIdx) {
+  const srcUrl = getFrameHref(frames[srcIdx]);
+  if (!srcUrl) return;
+
+  const dstIdx = 1 - srcIdx;
+  const dstUrl = getFrameHref(frames[dstIdx]);
+
+  // All rows where column[srcIdx] matches the source URL.
+  const matches = resolvedMap.filter(row => row[srcIdx] === srcUrl);
+  if (matches.length === 0) return;  // URL not in the map — leave other frame alone
+
+  let target;
+  if (matches.length === 1) {
+    target = matches[0][dstIdx];
+  } else {
+    // Duplicate HIERO key: prefer the row that keeps the current HIERO-NT page,
+    // otherwise take the first row.
+    const sameAsCurrent = matches.find(row => row[dstIdx] === dstUrl);
+    target = sameAsCurrent ? sameAsCurrent[dstIdx] : matches[0][dstIdx];
+  }
+
+  if (target === dstUrl) return;  // destination is already correct
+
+  navSyncing = true;
+  frames[dstIdx].src = target;
+  // navSyncing is cleared inside onLoaded() when dstIdx fires.
+}
+
+/* ── Scroll-sync helpers ───────────────────────────────────────────────── */
+
+function getOffsetInScroller(el, scroller) {
+  return el.getBoundingClientRect().top
+       - scroller.getBoundingClientRect().top
+       + scroller.scrollTop;
+}
+
+function getTopmostId(frame) {
+  const doc = frame.contentDocument;
+  if (!doc) return null;
+  const scroller = doc.getElementById('printable');
+  if (!scroller) return null;
+  const candidates = doc.querySelectorAll('#table-of-sections, #translation [id]');
+
+    const el = doc.getElementById('table-of-sections');
+    const top = getOffsetInScroller(el, scroller);
+    if (top + el.offsetHeight > scroller.scrollTop) return el.id;
+  
+  for (const el of candidates) {
+    const top = getOffsetInScroller(el, scroller);
+    if (top + el.offsetHeight > scroller.scrollTop) return el.id;
+  }
+  return null;
+}
+
+function scrollToId(frame, id) {
+  const doc = frame.contentDocument;
+  if (!doc) return;
+  const scroller = doc.getElementById('printable');
+  const el = doc.getElementById(id);
+  if (!scroller || !el) return;
+  scroller.scrollTop = getOffsetInScroller(el, scroller);
+}
+
+/* ── Scroll listener attachment ────────────────────────────────────────── */
+
+function attachListener(srcIdx) {
+  if (aborts[srcIdx]) aborts[srcIdx].abort();
+  aborts[srcIdx] = new AbortController();
+  const { signal } = aborts[srcIdx];
+
+  const src = frames[srcIdx];
+  const dst = frames[1 - srcIdx];
+  const scroller = src.contentDocument?.getElementById('printable');
+  if (!scroller) return;
+
+	scroller.addEventListener('scrollend', () => {
+	  if (syncing) return;
+	  const id = getTopmostId(src);
+	  if (!id) return;
+	  syncing = true;
+	  clearTimeout(syncTimer);
+
+	  const srcScroller = src.contentDocument?.getElementById('printable');
+	  const dstScroller = dst.contentDocument?.getElementById('printable');
+	  const dstEl = dst.contentDocument?.getElementById(id);
+
+	  if (srcScroller && dstScroller && dstEl) {
+	    const srcMax = srcScroller.scrollHeight - srcScroller.clientHeight;
+	    const srcAtBottom = srcScroller.scrollTop >= srcMax - 2;
+	    const targetTop = getOffsetInScroller(dstEl, dstScroller);
+	    const dstMax = dstScroller.scrollHeight - dstScroller.clientHeight;
+
+	    if (srcAtBottom || targetTop >= dstMax) {
+	      // Near the tail — sync dst as far as it goes, leave src alone
+	      dstScroller.scrollTop = Math.min(targetTop, dstMax);
+	    } else {
+	      // Normal sync — snap both
+	      scrollToId(src, id);
+	      scrollToId(dst, id);
+	    }
+	  }
+
+	  syncTimer = setTimeout(() => { syncing = false; }, 500);
+	}, { signal });
+}
+
+/* ── Frame load handler ────────────────────────────────────────────────── */
+
+function onLoaded(idx) {
+  loaded[idx] = true;
+  attachListener(idx);
+  if (loaded[1 - idx]) attachListener(1 - idx);
+
+  if (navSyncing) {
+    // This load was triggered programmatically by syncNavigation().
+    // Clear the guard and stop — do not recurse.
+    navSyncing = false;
+    return;
+  }
+
+  // User-initiated navigation: sync the other frame.
+  syncNavigation(idx);
+}
+
+/* ── Splitter drag ─────────────────────────────────────────────────────── */
+
+const splitter = document.getElementById('splitter');
+const panes    = [
+  document.getElementById('pane0'),
+  document.getElementById('pane1'),
+];
+
+let isDragging = false;
+let dragStartX, startWidths;
+
+splitter.addEventListener('mousedown', e => {
+  isDragging   = true;
+  dragStartX   = e.clientX;
+  startWidths  = panes.map(p => p.getBoundingClientRect().width);
+  splitter.classList.add('dragging');
+  document.body.style.userSelect    = 'none';
+  document.body.style.pointerEvents = 'none';
+  splitter.style.pointerEvents      = 'auto';
+  e.preventDefault();
+});
+
+document.addEventListener('mousemove', e => {
+  if (!isDragging) return;
+  const dx    = e.clientX - dragStartX;
+  const total = startWidths[0] + startWidths[1];
+  const left  = Math.max(160, Math.min(total - 160, startWidths[0] + dx));
+  panes[0].style.flex  = 'none';
+  panes[0].style.width = left + 'px';
+  panes[1].style.flex  = '1';
+  panes[1].style.width = '';
+});
+
+document.addEventListener('mouseup', () => {
+  if (!isDragging) return;
+  isDragging = false;
+  splitter.classList.remove('dragging');
+  document.body.style.userSelect    = '';
+  document.body.style.pointerEvents = '';
+  splitter.style.pointerEvents      = '';
+});
+
+/* ── Initial load ──────────────────────────────────────────────────────── */
+
+[0, 1].forEach(i => {
+  loaded[i] = false;
+  frames[i].addEventListener('load', () => onLoaded(i));
+  frames[i].src = resolvedMap[0][i];
+});
+
+</script>
+</body>
+</html>
