@@ -231,10 +231,10 @@ function getTopmostId(frame) {
   if (!scroller) return null;
   const candidates = doc.querySelectorAll('.translation [id]');
 
-    const el = doc.getElementById('table-of-sections');
-    const top = getOffsetInScroller(el, scroller);
-    if (top + el.offsetHeight > scroller.scrollTop &&
-        !frame.src.includes("index.html")) return el.id;
+  const el = doc.getElementById('table-of-sections');
+  const top = getOffsetInScroller(el, scroller);
+
+  if (top + el.offsetHeight > scroller.scrollTop) return el.id;
   
   for (const el of candidates) {
     const top = getOffsetInScroller(el, scroller);
