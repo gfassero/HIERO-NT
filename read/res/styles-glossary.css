@@ -1,15 +1,5 @@
 ﻿@import "styles-linklist.css?v=2b";
 
-#printable #translation {
-    display: table;
-    column-count: 1;
-    -webkit-column-count: 1;
-    -moz-column-count: 1;
-
-    max-width: initial;
-    margin-left: initial;
-    margin-right: initial;
-}
 #printable #table-of-sections {
     column-width: 8em;
 }
@@ -20,7 +10,6 @@
 
 .glossary-entry {
     display: table-row;
-    width: 100%;
 }
 
 .uniqueness {background-color: var(--boldhilite);}
@@ -81,7 +70,7 @@ details::before {
 }
 
 @media print {
-    .panel, #translation {
+    .panel, .translation {
         width: 100vw;
         margin: 0;
     }

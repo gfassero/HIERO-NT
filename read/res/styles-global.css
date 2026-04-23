@@ -4,6 +4,29 @@
 
 /* .panel a:not(#table-of-sections a):not(a.glossary-entry) {transition: none;} */
 
+.translation > * {
+	grid-column: 2;
+}
+
+.translation {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr min(var(--readwidth), 100%) 1fr;
+
+    p {
+        position: relative; /* Enables positioning for the ::before pseudo-element */
+        margin: 0;
+        padding-left: 1.8em; /* Aligns the text flush */
+        text-indent: 0; /* Keeps all lines flush with each other */
+        hyphenate-character: "\2013";
+        word-wrap: anywhere;
+    }
+}
+
+#footer {
+	grid-column: 1 / -1;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -25,29 +48,12 @@ p {
     overflow: hidden; /* Prevent content from overflowing the container */
 }
 .panel {
-    display: flex;
-    flex-direction: column;
     width: 100%;
     overflow-y: auto; /* Allow scrolling */
     box-sizing: border-box;
 }
-#translation {
-    padding: 1em;
-
-    /* These rules exist to shrink-wrap the paragraphs to the size of their text,
-       instead of letting them take up the entire width of the viewport. */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+.translation {
     word-wrap: break-word;
-
-    max-width: var(--readwidth);
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#translation, #table-of-sections {
-    max-width: 60em;
 }
 
 .match {
@@ -72,7 +78,7 @@ p {
         display: flow;
         overflow-y: visible; /* Do not crop for scrolling */
     }
-    #translation {
+    .translation {
         padding: 0;
     }
 

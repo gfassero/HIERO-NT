@@ -5,7 +5,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HIERO - Hebrew Idiom in English Roots</title>
-<link rel="stylesheet" href="res/styles-constants.css?v=4" />
+<link rel="stylesheet" href="res/styles-constants.css?v=6" />
 <style>
 
 body {
@@ -35,7 +35,7 @@ iframe {
   background: var(--darkborder);
 }
 #splitter {
-  width: 3pt;
+  width: 5pt;
   background: var(--nearblack);
   cursor: col-resize;
   flex-shrink: 0;
@@ -221,11 +221,12 @@ function getTopmostId(frame) {
   if (!doc) return null;
   const scroller = doc.getElementById('printable');
   if (!scroller) return null;
-  const candidates = doc.querySelectorAll('#table-of-sections, #translation [id]');
+  const candidates = doc.querySelectorAll('.translation [id]');
 
     const el = doc.getElementById('table-of-sections');
     const top = getOffsetInScroller(el, scroller);
-    if (top + el.offsetHeight > scroller.scrollTop) return el.id;
+    if (top + el.offsetHeight > scroller.scrollTop &&
+        !frame.src.includes("index.html")) return el.id;
   
   for (const el of candidates) {
     const top = getOffsetInScroller(el, scroller);
@@ -257,6 +258,8 @@ function attachListener(srcIdx) {
 
 	scroller.addEventListener('scrollend', () => {
 	  if (syncing) return;
+	  if (src.contentWindow?.location.href.includes('index.html')) return;
+
 	  const id = getTopmostId(src);
 	  if (!id) return;
 	  syncing = true;
@@ -282,14 +285,22 @@ function attachListener(srcIdx) {
 	    }
 	  }
 
-	  syncTimer = setTimeout(() => { syncing = false; }, 500);
+	  syncTimer = setTimeout(() => { syncing = false; }, 50);
 	}, { signal });
 }
 
 /* ── Frame load handler ────────────────────────────────────────────────── */
 
 function onLoaded(idx) {
+  const doc = frames[idx].contentDocument;
+  if (doc) {
+    const style = doc.createElement('style');
+    style.textContent = '* { scroll-behavior: auto !important;}';
+    doc.head.appendChild(style);
+  }
+
   loaded[idx] = true;
+
   attachListener(idx);
   if (loaded[1 - idx]) attachListener(1 - idx);
 

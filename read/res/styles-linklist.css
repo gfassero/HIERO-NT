@@ -1,4 +1,6 @@
-html #translation {
+html .translation {
+    scroll-snap-type: none;
+
     a {
         border-radius: var(--cornerradius);
     }

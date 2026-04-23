@@ -121,8 +121,8 @@ function findGloss(strongsNumber) {
 }
 
 function highlightMatches(searchQuery) {
-    //    let matchingSpans = document.getElementById("translation").querySelectorAll(`span[data-root='${searchQuery}']`); // Select from the current document
-    let allSpans = document.getElementById("translation").querySelectorAll("span[data-root]");
+    //    let matchingSpans = document.getElementById("printable").querySelectorAll(`span[data-root='${searchQuery}']`); // Select from the current document
+    let allSpans = document.getElementById("printable").querySelectorAll("span[data-root]");
     let matchingSpans = [];
 
     allSpans.forEach(span => {
@@ -144,7 +144,7 @@ function highlightMatches(searchQuery) {
 }
 
 function unhighlightMatches(searchQuery) {
-    let allSpans = document.getElementById("translation").querySelectorAll("span[data-root]");
+    let allSpans = document.getElementById("printable").querySelectorAll("span[data-root]");
 
     allSpans.forEach(span => {
 	span.classList.remove("match"); // Remove all highlights

@@ -1,3 +1,6 @@
+html .translation {
+	scroll-snap-type: none;
+}
     a.sec0, a.sec1, a.sec2, .christian > a {
         font-weight: bold;
     }

@@ -1,9 +1,9 @@
-@import "res/styles-constants.css?v=4";
-@import "res/styles-global.css?v=4";
-@import "res/styles-paragraph.css?v=4";
-@import "res/styles-headfoot.css?v=4" screen;
+@import "res/styles-constants.css?v=6";
+@import "res/styles-global.css?v=6";
+@import "res/styles-paragraph.css?v=6";
+@import "res/styles-headfoot.css?v=6" screen;
 
-@import "styles-span-nt.css?v=4";
+@import "styles-span-nt.css?v=6";
 
 :root {
   --hue-main: 140;

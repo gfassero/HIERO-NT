@@ -3,21 +3,19 @@
 }
 #header, #footer {
     background-color: var(--nearblack);
-    overflow: hidden;
 }
 #footer {
+    margin-top: 1em;
     border-top: var(--solidborder);
 }
 
 #table-of-sections {
     order: -1; /* Place TOC first */
-    overflow: hidden;
     display: flex-column;
     column-width: 4em;
     column-gap: 3px;
 
-    max-width: var(--readwidth);
-    margin: 10px clamp(30px, 50vw, (100vw - var(--readwidth)) / 2 + 30px);
+    margin: 10px;
     border: var(--solidborder);
     border-radius: var(--cornerradius);
 

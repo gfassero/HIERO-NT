@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let searchQuery = new URLSearchParams(window.location.search).get("q");
     console.log("Search query:", searchQuery);
 
-    let resultsContainer = document.getElementById("translation");
+    let resultsContainer = document.getElementById("search-results");
     resultsContainer.innerHTML = `<p class="book loading-message">Searching the text...</p>`;
     document.title = `HIERO | Root ${searchQuery || 'Search'} (Loading...)`;
 
@@ -116,7 +116,7 @@ function fetchAndDisplayResults(query, citations, resultsContainer) {
 }
 
 function displayNoResults(query) {
-    let resultsContainer = document.getElementById("translation");
+    let resultsContainer = document.getElementById("search-results");
     resultsContainer.innerHTML = `<p class="book">Root ${query}: 0 matches</p>`;
     document.title = `HIERO | Root ${query}`;
 }

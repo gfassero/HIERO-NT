@@ -2,14 +2,21 @@
     font-weight: bold;
 }
 
-#translation {
+.translation {
+	scroll-snap-type: y mandatory;
+
     p {
         position: relative; /* Enables positioning for the ::before pseudo-element */
         margin: 0;
+	margin-right: auto;
         padding-left: 1.8em; /* Aligns the text flush */
         text-indent: 0; /* Keeps all lines flush with each other */
         hyphenate-character: "\2013";
         word-wrap: anywhere;
+    }
+    
+    p:not(.subtitle):not(.in1):not(.in2):not(.paragraph):not(.section), #table-of-sections {
+	scroll-snap-align: start;
     }
 
     /* HEADINGS */
@@ -18,7 +25,7 @@
         break-before: page;
     }
     p.book, p.subtitle {
-        padding-left: 5.4em; /* 1.8 + 1.2 * 3 */
+        margin-left: 5.4em; /* 1.8 + 1.2 * 3 */
     }
     p.book, p.psalm {
         margin-top: 1em;
@@ -101,15 +108,15 @@
 
     /* PARASHAH BREAKS */
 
-html #translation p.section {
-    padding-left: 5.4em; /* 1.8 + 1.2 * 3 */
+html .translation p.section {
+    margin-left: 5.4em; /* 1.8 + 1.2 * 3 */
 }
-html #translation p.paragraph {
+html .translation p.paragraph {
     padding-top: 1em;
     padding-bottom: 1em;
 }
-html .newtestament #translation p,
-html #translation p.section {
+html .newtestament p,
+html .translation p.section {
     margin-top: 1em;
     margin-bottom: 1em;
 }
