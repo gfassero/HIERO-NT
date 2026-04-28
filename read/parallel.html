@@ -234,7 +234,7 @@ function getTopmostId(frame) {
   const el = doc.getElementById('table-of-sections');
   const top = getOffsetInScroller(el, scroller);
 
-  if (top + el.offsetHeight > scroller.scrollTop) return el.id;
+  if (top + el.offsetHeight > scroller.scrollTop) return null; /* Do not sync if at table-of-sections. */
   
   for (const el of candidates) {
     const top = getOffsetInScroller(el, scroller);
