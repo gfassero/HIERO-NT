@@ -303,7 +303,7 @@ function onLoaded(idx) {
   const doc = frames[idx].contentDocument;
   if (doc) {
     const style = doc.createElement('style');
-    style.textContent = '* { scroll-behavior: auto !important;}';
+    style.textContent = '* {scroll-behavior: auto !important;} .translation {scroll-snap-type: y mandatory;}';
     doc.head.appendChild(style);
   }
 

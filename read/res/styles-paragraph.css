@@ -3,7 +3,6 @@
 }
 
 .translation {
-	scroll-snap-type: y mandatory;
 
     p {
         position: relative; /* Enables positioning for the ::before pseudo-element */
