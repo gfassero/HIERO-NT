@@ -16,6 +16,8 @@
 
 [Dictionary of Greek](http://greek_greek.en-academic.com/) by [Academic](http://en-academic.com/).
 
+[Google Books Ngram Viewer](http://books.google.com/ngrams), English 2024 Corpus.
+
 [Koine Greek Lexicon](http://github.com/greekdoc/greekdoc.github.io) by [John Barach](http://greekdoc.com/).
 
 [Online Etymology Dictionary](http://www.etymonline.com/) by [Etymonline](http://www.etymonline.com/).
