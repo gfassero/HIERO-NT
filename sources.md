@@ -20,6 +20,8 @@
 
 [Koine Greek Lexicon](http://github.com/greekdoc/greekdoc.github.io) by [John Barach](http://greekdoc.com/).
 
+[A New English Translation of the Septuagint (NETS)](http://archive.org/embed/a-new-english-translation-of-the-septuagint-2007-albert-pietersma-and-benjamin-g.-wright-jo-e-juizes) by Albert Pietersma and Benjamin G. Wright.
+
 [Online Etymology Dictionary](http://www.etymonline.com/) by [Etymonline](http://www.etymonline.com/).
 
 [Scaife ATLAS v2](http://atlas.perseus.tufts.edu/).
